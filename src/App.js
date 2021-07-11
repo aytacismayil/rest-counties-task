@@ -21,8 +21,14 @@ function App() {
   const searchData = async term => {
       if(term === '') return
       const res = await fetch(`https://restcountries.eu/rest/v2/name/${term}`)
-      const data = await res.json()
-      setItems(data)
+      if(res.ok){
+        const data = await res.json();
+        setItems(data)
+      }else{
+        alert("Məlumat tapilmadi!")
+      }
+      
+     
   }
 
   const filterByRegion = async region => {
